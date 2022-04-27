@@ -16,6 +16,8 @@ const app = async (yargsObj) => {
 		await deleteMovie(collection, {title: yargsObj.title})
 	} else if (yargsObj.search) {
 		await searchMovies(collection, {title: yargsObj.title})
+		await searchMovies(collection, {actor: yargsObj.actor})
+		await searchMovies(collection, {rating: yargsObj.rating})
 	} else {
 		console.log('Incorrect command')
 	}
