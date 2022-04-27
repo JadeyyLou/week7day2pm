@@ -23,7 +23,7 @@ exports.listMovies = async (collection) => {
 exports.updateMovie = async (collection, yargsObj) => {
 	try{
 	const update = await collection.updateOne({title: yargsObj.title}, 
-		{$set:{ title: yargsObj.title, actor: yargsObj.actor}})
+		{$set:{ title: yargsObj.title, actor: yargsObj.actor, rating: yargsObj.rating}})
         console.log('Successfully updated',update)
 
 	} catch(error) {
@@ -37,6 +37,15 @@ exports.deleteMovie = async (collection, yargsObj) => {
 		const remove = await collection.deleteOne(yargsObj)
 		console.log('Successfully deleted entry',remove) 
 
+	} catch(error) {
+		console.log(error);
+	}
+}
+
+exports.searchMovies = async (collection, yargsObj) => {
+	try{
+		const search = await collection.find(yargsObj).toArray()
+		console.log(search)
 	} catch(error) {
 		console.log(error);
 	}
